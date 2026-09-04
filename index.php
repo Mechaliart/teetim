@@ -1,7 +1,7 @@
 <?php
 //inclure le fichier commun contenant le haut du code des écrans de UI
 
-include("commun/entete.inc.php");
+include_once("commun/entete.inc.php");
 
  ?>  
         
@@ -27,8 +27,9 @@ include("commun/entete.inc.php");
                 </p>
             </article>
         </main>
+        <!-- egg -->
 <?php 
 
 
-include("commun/p2p.inc.php");
+include_once("commun/p2p.inc.php");
 ?> 
