@@ -23,8 +23,7 @@ include_once("commun/entete.inc.php");
                     Teeshirt en V, col rond, ample ou ajusté, à manches courtes 
                     ou à manches longues pour les plus frileux, uni ou à motifs 
                     pour styliser une tenue… Le teeshirt est disponible dans une 
-                    variété de couleurs, de styles et de motifs.
-                </p>
+                    variété de couleurs, de styles et de motifs.                </p>
             </article>
         </main>
         <!-- egg -->
