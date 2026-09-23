@@ -1,26 +1,20 @@
 <?php
 // Indiquer la page
-$page = "accueil";
+$page = "casquettes";
 
 // Inclure le fichier commun contenant le haut du code des écrans de UI
 include_once('commun/entete.inc.php');
-
-// On documente la variable $_ avec PHPDoc pour aider Intelephense avec les hints de code.
+// Ajouter une "annotation" (commentaire de documentation) pour
+// signifier à PHPIntelephense que la variable $_ existe dans ce 
+// contexte.
 /** @var stdClass $_ */
 ?>
-<main class="page-accueil">
+<main class="page-casquettes">
     <article class="amorce">
         <h1><?= $_->amorceH1; ?></h1>
-        <h2><?= $_->amorceH2; ?></h2>
-        <h4><?= $_->amorceH4; ?></h4>
     </article>
     <article class="principal">
-        <p>
-            <?= $_->para1; ?>
-        </p>
-        <p>
-
-        </p>
+        <?= $_->enConstruction; ?>
     </article>
 </main>
 <?php

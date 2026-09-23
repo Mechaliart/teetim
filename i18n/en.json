@@ -1,0 +1,53 @@
+{
+    "entete": {
+        "meta": {
+            "title": "teeTIM // natural fiber ... artificial design",
+            "desc": "Home page of the 100% Quebec-made clothing designer, created by TIM students using AI-generated designs and made with 100% natural and organic fibers."
+        },
+        "recherchePlaceholder": "Search",
+        "logoAlt": "Home",
+        "navigationPrincipale": {
+            "navTeeshirts": "T-shirts",
+            "navCasquettes": "Caps",
+            "navHoodies": "Hoodies",
+            "navAide": "Help",
+            "navNous": "About us"
+        }
+    },
+    "pp": {
+        "achats": {
+            "titre": "Your purchases",
+            "navFaq": "FAQ",
+            "navLivraison": "Delivery of your package",
+            "navConditions": "Sales terms",
+            "navConfid": "Privacy policy"
+        },
+        "apropos": {
+            "titre": "About teeTIM",
+            "navCompagnie": "The company",
+            "navEquipe": "The team",
+            "navEmploi": "Jobs"
+        },
+        "coordonnees": {
+            "titre": "Contact us",
+            "tel": "Toll-free: ",
+            "courriel": "Email: "
+        },
+        "droits": "All rights reserved,"
+    },
+    "accueil": {
+        "amorceH1": "T-shirts, hoodies, and caps made in Quebec 💯",
+        "amorceH2": "Designed at TIM with ❤️",
+        "amorceH4": "/** with a little help from DALL-E 😉 **/",
+        "para1": "Today, the T-shirt is an essential garment in everyone's wardrobe. And with environmental concerns more important than ever, Quebec-made T-shirts are preferred to reduce environmental impact and highlight local craftsmanship.",
+        "para2": "V-neck, crew neck, loose or fitted, short-sleeve or long-sleeve for the chillier ones, plain or patterned to style an outfit... The T-shirt is available in a variety of colors, styles, and patterns."
+    },
+    "teeshirts": {
+        "amorceH1": "Our beautiful T-shirts",
+        "enConstruction": "Coming soon..."
+    },
+    "casquettes": {
+        "amorceH1": "Our caps",
+        "enConstruction": "Coming soon..."
+    }
+}
