@@ -49,8 +49,9 @@ $_ent = $textes->entete;
 $_pp = $textes->pp;
 
 
-
-
+$directionEcriture = in_array($langue, ["ar", "he", "fa", "ur", "dv", "ps", "ku"]) 
+? 'rtl' : 'ltr'; 
+// changer la direction d'écriture pour les langues qui s'écrivent de droite à gauche
 
 ?>
 

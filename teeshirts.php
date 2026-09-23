@@ -14,6 +14,12 @@ include_once('commun/entete.inc.php');
     </article>
     <article class="principal">
         <?= $_->enConstruction; ?>
+        <?php 
+        $prix = 1234.56;
+        $formateurDevises = new NumberFormatter('fr_CA', NumberFormatter::CURRENCY);
+        echo $formateurDevises->format($prix, NumberFormatter::CURRENCY); 
+        ?>
+      
     </article>
 </main>
 <?php
