@@ -3,7 +3,9 @@
 	$page = 'accueil';
 
 	// Inclure la partie de haut de la page.
-	include('parties-communes/entete.php');  
+	include('parties-communes/entete.php');
+	
+	 /** @var stdClass $_ */  
 ?>
 <main class="page-accueil">
 	<article class="amorce">

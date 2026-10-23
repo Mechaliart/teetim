@@ -1,4 +1,10 @@
-    <footer>
+  <?php 
+  
+ /** @var stdClass $_pp */  
+  
+ 
+ ?>
+  <footer>
 			<h2>teeTIM</h2>
 			<div class="contenu">
 				<section class="achats">

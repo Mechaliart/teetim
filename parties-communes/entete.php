@@ -6,42 +6,10 @@ $languesDispo = obtenirLanguesDisponibles();
 
 $langue = determinerLangue($languesDispo);
 
-/*****************************
-		Déterminer la langue du site
- *****************************/
-// 1. Langue par défaut
-$langue = 'fr';
+[$_ent, $_pp, $_] = obtenirTextesStatiques($langue, $page);
 
-// 2. Langue mémorisée dans un témoin HTTP
-if (isset($_COOKIE['choixLangue']) && in_array($_COOKIE['choixLangue'], $languesDispo)) {
-	$langue = $_COOKIE['choixLangue'];
-}
+$directionEcrtiture = obtenirDirectionEcriture($langue);
 
-// 3. Langue spécifiée explicitement
-if (isset($_GET['lan']) &&  in_array($_GET['lan'], $languesDispo)) {
-	$langue = $_GET['lan'];
-	setcookie('choixLangue', $langue, time() + 30 * 24 * 3600);
-}
-
-/*********************
-	Intégration des textes
- *********************/
-$textesJSON = file_get_contents("i18n/" . $langue . ".json");
-$textes = json_decode($textesJSON);
-// Variables raccourcis pour les parties communes
-$_ent = $textes->entete;
-$_pp = $textes->pp;
-// Variable raccourci pour toutes les pages spécifiques
-$_ = @$textes->$page;
-
-
-
-
-
-
-// Déterminer la direction d'écriture
-$directionEcriture = in_array($langue, ["ar", "he", "fa", "ur", "dv", "ps", "ku"])
-	? 'rtl' : 'ltr';
 ?>
 
 <!DOCTYPE html>

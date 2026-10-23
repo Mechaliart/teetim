@@ -47,18 +47,46 @@ if (isset($_GET['lan']) &&  in_array($_GET['lan'], $languesDispo)) {
 return $langue;
 
 }
+/**
+ * retourne les textes statiques de la page désignée dans la langue indiquée
+ * @param string $codeLangue Code de la langue active 
+ * @param string $nomPage Nom de la page requise
+ * @return array Tableau des textes statiques organisés par les trois section (chaque
+ * section dans un objet)
+ */
 
-function obtenirTextes($codeLangue, $nomPage){
+function obtenirTextesStatiques($codeLangue, $nomPage){
 
-$textesJSON = file_get_contents("i18n/" . $langue . ".json");
-$textes = json_decode($textesJSON);
-// Variables raccourcis pour les parties communes
-$_ent = $textes->entete;
-$_pp = $textes->pp;
-// Variable raccourci pour toutes les pages spécifiques
-$_ = @$textes->$nomPage;
 
-return [ $_ent, $_pp, $_ ];
+$textes = json_decode(file_get_contents("i18n/" . $codeLangue . ".json"));
+return [ $textes->entete, $textes->pp, @$textes->$nomPage ];
 
 
 }
+
+/**
+ * Obtient le code de direction d'écriture de la langue indiquée
+ * par le code à deux lettres.
+ * @param string $codeLangue Code de la langue en 2 lettres
+ * @return string Valeur de l'attribut DIR HTML : 'ltr' ou 'rtl'
+ */
+
+function obtenirDirectionTexte($codeLangue){
+
+return in_array($codeLangue, ["ar", "he", "fa", "ur", "dv", "ps", "ku"])
+	? 'rtl' : 'ltr';
+}
+
+
+/**
+ * /////////////////////////////////////////
+ * ////////   /////////////    //////////////
+ * /////       ///////////      /////////////
+ * //                             //////////////
+ * /
+ * /
+ * /
+ * //
+ * ///
+ * ////////  
+ */

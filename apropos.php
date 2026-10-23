@@ -2,6 +2,7 @@
     // Indiquer la page
     $page = "apropos";
     include("parties-communes/entete.php"); 
+     /** @var stdClass $_ */  
 ?>
     <main class="page-apropos">
         <article class="amorce">

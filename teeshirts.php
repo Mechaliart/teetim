@@ -1,4 +1,8 @@
 <?php
+
+// Librairie du catalogue de produits.
+include('lib/catalogue.lib.php');
+
 // Définir la variable $page pour indiquer la page affichée.
 $page = 'teeshirts';
 
