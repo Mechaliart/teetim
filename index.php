@@ -1,29 +1,23 @@
-<?php
-// Indiquer la page
-$page = "accueil";
+<?php 
+	// Définir la variable $page pour indiquer la page affichée.
+	$page = 'accueil';
 
-// Inclure le fichier commun contenant le haut du code des écrans de UI
-include_once('commun/entete.inc.php');
-
-// On documente la variable $_ avec PHPDoc pour aider Intelephense avec les hints de code.
-/** @var stdClass $_ */
+	// Inclure la partie de haut de la page.
+	include('parties-communes/entete.php');  
 ?>
 <main class="page-accueil">
-    <article class="amorce">
-        <h1><?= $_->amorceH1; ?></h1>
-        <h2><?= $_->amorceH2; ?></h2>
-        <h4><?= $_->amorceH4; ?></h4>
-    </article>
-    <article class="principal">
-        <p>
-            <?= $_->para1; ?>
-        </p>
-        <p>
-
-        </p>
-    </article>
+	<article class="amorce">
+		<h1><?= $_->amorceTitre ?></h1>
+		<h2><?= $_->amorceSousTitre ?></h2>
+		<h4><?= $_->amorceSousTitre2 ?></h4>
+	</article>
+	<article class="principal">
+		<p>
+			<?= $_->para1 ?>
+		</p>
+		<p>
+			<?= $_->para2 ?>
+		</p>
+	</article>
 </main>
-<?php
-// Inclure le fichier commun contenant la partie du bas du code des écrans de UI
-include_once('commun/p2p.inc.php');
-?>
+<?php include('parties-communes/pied2page.php'); ?>
