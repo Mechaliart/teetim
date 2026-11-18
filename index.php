@@ -1,11 +1,11 @@
-<?php 
-	// Définir la variable $page pour indiquer la page affichée.
-	$page = 'accueil';
+<?php
+// Définir la variable $page pour indiquer la page affichée.
+$page = 'accueil';
 
-	// Inclure la partie de haut de la page.
-	include('parties-communes/entete.php');
-	
-	 /** @var stdClass $_ */  
+// Inclure la partie de haut de la page.
+include('parties-communes/entete.php');
+
+/** @var stdClass $_ */
 ?>
 <main class="page-accueil">
 	<article class="amorce">

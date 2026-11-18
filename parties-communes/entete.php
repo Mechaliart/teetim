@@ -1,15 +1,10 @@
 <?php
 // Inclure la librairie d'i18n.
 include('lib/i18n.lib.php');
-
 $languesDispo = obtenirLanguesDisponibles();
-
 $langue = determinerLangue($languesDispo);
-
 [$_ent, $_pp, $_] = obtenirTextesStatiques($langue, $page);
-
-$directionEcrtiture = obtenirDirectionEcriture($langue);
-
+$directionEcriture = obtenirDirectionTexte($langue);
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +21,7 @@ $directionEcrtiture = obtenirDirectionEcriture($langue);
 	<meta name="description" content="Page d'accueil du concepteur de vêtements 100% fait au Québec, conçus par les étudiants du TIM à l'aide de designs produits par intelligence artificielle, et fabriqués avec des fibres 100% naturelles et biologiques.">
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="icon" type="image/png" href="images/favicon.png" />
+	<script src="js/main.js" defer></script>
 </head>
 
 <body>

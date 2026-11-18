@@ -1,33 +1,27 @@
 <?php
 
+/** 
+ * @var stdClass $_ Raccourci pour la section texte de cette page. 
+ * @var string $langue Code de la langue active.
+ */
+
 // Librairie du catalogue de produits.
 include('lib/catalogue.lib.php');
 
 // Définir la variable $page pour indiquer la page affichée.
 $page = 'teeshirts';
-
 // Inclure la partie de haut de la page.
 include('parties-communes/entete.php');
 
-// Intégrer le fichier JSON contenant le catalogue des produits
-$catalogue = json_decode(file_get_contents("data/teeshirts.json"));
+// Gérer l'intéractivité de filtre et tri.
+// a) Capturer la saisie de l'utilisateur (valeur par défaut : 'aleatoire')
+$tri = (isset($_GET['tri'])) ? $_GET['tri'] : 'aleatoire';
 
-// Initialiser deux tableaux 
-$themes = [];
-$produits = [];
-
-foreach ($catalogue as $codeTheme => $detailTheme) {
-	// echo "<p>Le code du thème est $codeTheme</p>\n";
-	// print_r($detailTheme);
-	// Tableau des thèmes
-	$themes[$codeTheme] = $detailTheme->theme->$langue;
-	// Tableau des produits
-	$produits = array_merge($produits, $detailTheme->produits);
-}
+// b) Passer la valeur de tri à la fonction 
+[$themes, $produits] = obtenirCatalogue($page, $langue, $tri);
 
 // Formatteur des montants d'argent
 $formatteurMontants = new NumberFormatter($langue, NumberFormatter::CURRENCY);
-/** @var stdClass $_ : raccourci pour la section texte de cette page. */
 ?>
 <main class="page-produits page-teeshirts">
 	<article class="amorce">
@@ -47,12 +41,16 @@ $formatteurMontants = new NumberFormatter($langue, NumberFormatter::CURRENCY);
 			<div class="tri">
 				<label for="tri">Trier par : </label>
 				<select name="tri" id="tri">
-					<option value="tous">Meilleur vendeur</option>
-					<option value="prix-asc">Prix / ascendant</option>
-					<option value="prix-desc">Prix / descendant</option>
-					<option value="nom-asc">Alpha / ascendant</option>
-					<option value="nom-desc">Alpha / descendant</option>
-					<option value="date_jout">Nouveauté</option>
+					<option <?= ($tri == 'aleatoire') ? ' selected ' : ''; ?> value="aleatoire">Aléatoire</option>
+					<option <?= ($tri == 'ventesDesc') ? ' selected ' : ''; ?> value="ventesDesc">Meilleur vendeur</option>
+					<option <?= ($tri == 'prixAsc') ? ' selected ' : ''; ?> value="prixAsc">Prix / ascendant</option>
+					<option <?= ($tri == 'prixDesc') ? ' selected ' : ''; ?> value="prixDesc">Prix / descendant</option>
+					<!-- Les deux options de tri alphabétique ne sont pas encore implémentées -->
+					<!-- 
+					<option <?= ($tri == 'nomAsc') ? ' selected ' : ''; ?> value="nomAsc">Alpha / ascendant</option>
+					<option <?= ($tri == 'nomDesc') ? ' selected ' : ''; ?> value="nomDesc">Alpha / descendant</option>
+					 -->
+					<option <?= ($tri == 'dacDesc') ? ' selected ' : ''; ?> value="dacDesc">Nouveauté</option>
 				</select>
 			</div>
 		</form>

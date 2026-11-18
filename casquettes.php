@@ -2,6 +2,7 @@
 // Indiquer la page
 $page = "casquettes";
 include("parties-communes/entete.php");
+/** @var stdClass $_ */
 ?>
 <main class="page-produits page-casquettes">
 	<article class="amorce">
