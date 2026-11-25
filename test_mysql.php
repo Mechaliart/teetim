@@ -1,6 +1,9 @@
 <?php
 // Étape 1 : Obtenir une connexion à MySQL
 $cnx = new mysqli('db', 'teetim', 'teetim', 'teetim');
+// étape 1bis : choisir le BD
+$cnx->select_db('teetim');
+
 
 // Étape 2 : Écrire une requête (commande) SQL
 $requeteProduits = "SELECT nom, prix FROM produit LIMIT 10";

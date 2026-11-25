@@ -66,8 +66,10 @@ $formatteurMontants = new NumberFormatter($langue, NumberFormatter::CURRENCY);
 			<div class="produit">
 				<span class="image">
 					<img 
-						src="images/produits/teeshirts/<?= $prd->fichier_image; ?>" 
+						src="images/produits/teeshirts/<?= ($prd->fichier_image!=='') ? $prd->fichier_image : 'vert.png'; ?>" 
 						alt="<?= $prd->nom; ?>"
+						onerror="evt => evt.target.src = 'images/produits/teeshirts/vert.png'"
+						
 					>
 				</span>
 				<span class="nom"><?= $prd->nom; ?></span>
