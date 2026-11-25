@@ -3,89 +3,38 @@
 /************ Librairie de code pour gérer le catalogue des produits **********/
 
 /**
- * Retourne les thèmes et les produits de la catégorie demandée.
- * @param string $categorie Catégorie de produits (ex: teeshirts, casquettes, etc.)
- * @param string $codeLangue Code en deux lettres de la langue d'affichage.
- * @param string $critereTri Valeur du critère de tri.
- * @return array Tableau contenant les deux tableaux des thèmes et des produits.
+ * Retourne les thèmes.
+ * @return array Tableau contenant des objets représentant les thèmes.
  */
-function obtenirCatalogue($categorie, $codeLangue, $critereTri)
-{
-  $catalogue = json_decode(file_get_contents("data/$categorie.json"));
+function obtenirThemes() {
+  $cnx = new mysqli('db', 'teetim', 'teetim', 'teetim');
+  $resultat = $cnx->query("SELECT * FROM theme");
+  // return $resultat->fetch_all(MYSQLI_ASSOC);
+
   $themes = [];
+  while($uneLigne = $resultat->fetch_object()) {
+    $themes[] = $uneLigne;
+  }
+  return $themes;
+}
+
+/**
+ * Retourne les produits de la catégorie demandée.
+ * @param string $categorie Catégorie de produits (ex: teeshirts, casquettes, etc.)
+ * @param string $critereTri Valeur du critère de tri.
+ * @param string $critereFiltre Valeur du critère de filtre.
+ * @return array Tableau contenant des objets qui représentent les produits.
+ */
+function obtenirProduits($categorie, $critereTri, $critereFiltre)
+{
+  $cnx = new mysqli('db', 'teetim', 'teetim', 'teetim');
+  $clauseWhere = ($critereFiltre==="tous") ? "" : "WHERE thm_id=$critereFiltre";
+  $sql = "SELECT * FROM produit $clauseWhere ORDER BY $critereTri";
+  $resultat = $cnx->query($sql);
   $produits = [];
-
-  foreach ($catalogue as $codeTheme => $detailTheme) {
-    $themes[$codeTheme] = $detailTheme->theme->$codeLangue;
-
-    $produits = array_merge($produits, $detailTheme->produits);
+  while($prod = $resultat->fetch_object()) {
+    $produits[] = $prod;
   }
-  // Trier le tableau $produits avant de le retourner
-  // Utiliser comme fonction de comparaison la fonction nommée suivant la 
-  // variable $critereTri
-  if (function_exists($critereTri)) {
-    usort($produits, $critereTri);
-  } else {
-    shuffle($produits);
-  }
-
-
-  return [$themes, $produits];
+  return $produits;
 }
 
-/**
- * Fonction de comparaison des prix descendants des produits.
- * @param stdClass $prd1 Objet correspondant au premier produit à comparer.
- * @param stdClass $prd2 Objet correspondant au deuxième produit à comparer.
- * @return int Nombre entier positif, négatif, ou 0 selon la comparaison.
- */
-function prixDesc($prd1, $prd2)
-{
-  return 100 * $prd2->prix - 100 * $prd1->prix;
-}
-
-/**
- * Fonction de comparaison des prix ascendants des produits.
- * @param stdClass $prd1 Objet correspondant au premier produit à comparer.
- * @param stdClass $prd2 Objet correspondant au deuxième produit à comparer.
- * @return int Nombre entier positif, négatif, ou 0 selon la comparaison.
- */
-function prixAsc($prd1, $prd2)
-{
-  return 100 * $prd1->prix - 100 * $prd2->prix;
-}
-
-// Nom asc
-// Plus tard (plus compliqué)
-
-// Nom desc
-// Plus tard 
-
-// Ventes desc
-/**
- * Fonction de comparaison des chiffres de vente en ordre descendant des produits.
- * @param stdClass $prd1 Objet correspondant au premier produit à comparer.
- * @param stdClass $prd2 Objet correspondant au deuxième produit à comparer.
- * @return int Nombre entier positif, négatif, ou 0 selon la comparaison.
- */
-function ventesDesc($prd1, $prd2)
-{
-  return $prd2->ventes - $prd1->ventes;
-}
-
-/**
- * Fonction de comparaison des dates d'ajout au catalogue en ordre descendant.
- * @param stdClass $prd1 Objet correspondant au premier produit à comparer.
- * @param stdClass $prd2 Objet correspondant au deuxième produit à comparer.
- * @return int Nombre entier positif, négatif, ou 0 selon la comparaison.
- */
-function dacDesc($prd1, $prd2)
-{
-  if ($prd2->dac > $prd1->dac) {
-    return 1;
-  } else if ($prd2->dac < $prd1->dac) {
-    return -1;
-  } else {
-    return 0;
-  }
-}
